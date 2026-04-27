@@ -1,20 +1,55 @@
 ﻿using namespace std;
-//
-
+#include <string>
 #include <iostream>
 
 int main()
+{ 
+int L;
+
+while (cin >> L && L != 0) 
 {
-    std::cout << "Hello World!\n";
+    //pochvame ot +x
+    string dir = "+x";
+
+    for (int i = 0; i < L - 1; i++)
+    {
+        //na vseki i - komanda
+        string cmd;
+        cin >> cmd;
+
+        //produljavame kum sledvashta iteraciq
+        if (cmd == "No") 
+            continue;
+
+        if (dir == "+x")
+            dir = cmd;
+        else if (dir == "-x")
+        {
+            if (cmd == "+y") dir = "-y";
+            else if (cmd == "-y") dir = "+y";
+            else if (cmd == "+z") dir = "-z";
+            else if (cmd == "-z") dir = "+z";
+        }
+        else if (dir == "+y") 
+        {
+            if (cmd == "+y") dir = "-x";
+            else if (cmd == "-y") dir = "+x";
+        }
+        else if (dir == "-y")
+        {
+            if (cmd == "+y") dir = "+x";
+            else if (cmd == "-y") dir = "-x";
+        }
+        else if (dir == "+z")
+        {
+            if (cmd == "+z") dir = "-x";
+            else if (cmd == "-z") dir = "+x";
+        }
+        else if (dir == "-z") {
+            if (cmd == "+z") dir = "+x";
+            else if (cmd == "-z") dir = "-x";
+        }
+    }
+
+    cout << dir << endl;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
